@@ -19,6 +19,8 @@ class BeHerApp extends StatelessWidget {
       title: 'BeHer',
       theme: ThemeData(
         primarySwatch: Colors.pink,
+       fontFamily: 'Inter',
+        useMaterial3: true,
       ),
       home: const SplashScreen(),
     );

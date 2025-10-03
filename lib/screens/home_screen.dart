@@ -1,54 +1,72 @@
-import 'package:client/screens/profile_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:curved_navigation_bar/curved_navigation_bar.dart';
-import '../models/user_skin_profile.dart';
+import '../components/header_section.dart';
+import '../components/hero_banner.dart';
+import '../components/scan_button.dart';
+import '../components/category_tabs.dart';
+import '../components/product_grid.dart';
 
 class HomeScreen extends StatefulWidget {
-  final UserSkinProfile profile;
-  const HomeScreen({super.key, required this.profile});
+  const HomeScreen({super.key});
 
   @override
-  _HomeScreenState createState() => _HomeScreenState();
+  State<HomeScreen> createState() => _HomeScreenState();
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  int _selectedIndex = 0; 
+  int _selectedCategory = 0;
 
-  late final List<Widget> _screens;
-
-  @override
-  void initState() {
-    super.initState();
-    _screens = [
-      const Center(child: Text("Home")),
-      const Center(child: Text("Scan")), // for live camera scanning
-      ProfileScreen(profile: widget.profile), 
-    ];
+  void _onCategoryChanged(int index) {
+    setState(() {
+      _selectedCategory = index;
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      extendBody: true,
-      body: _screens[_selectedIndex],
-      bottomNavigationBar: CurvedNavigationBar(
-        index: _selectedIndex,
-        height: 60, 
-        backgroundColor: Colors.transparent,
-        color: Colors.pinkAccent,
-        buttonBackgroundColor: Colors.transparent,
-        animationCurve: Curves.easeInOut,
-        animationDuration: const Duration(milliseconds: 300),
-        items: const <Widget>[
-          Icon(Icons.home, size: 30, color: Colors.black),
-          Icon(Icons.camera, size: 30, color: Colors.black),
-          Icon(Icons.person, size: 30, color: Colors.black),
-        ],
-        onTap: (index) {
-          setState(() {
-            _selectedIndex = index;
-          });
-        },
+      backgroundColor: const Color(0xFFFDFCFB), // Soft off-white background
+      body: SafeArea(
+        child: Column(
+          children: [
+            Expanded(
+              child: SingleChildScrollView(
+                physics: const BouncingScrollPhysics(),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    // Header Section
+                    HeaderSection(userName: "Sarah"),
+                    
+                    const SizedBox(height: 8),
+                    
+                    // Hero Banner
+                    const HeroBanner(),
+                    
+                    const SizedBox(height: 20),
+                    
+                    // Scan Button
+                    const ScanButton(),
+                    
+                    const SizedBox(height: 24),
+                    
+                    // Category Tabs
+                    CategoryTabs(
+                      selectedIndex: _selectedCategory,
+                      onCategoryChanged: _onCategoryChanged,
+                    ),
+                    
+                    const SizedBox(height: 20),
+                    
+                    // Product Grid
+                    const ProductGrid(),
+                    
+                    const SizedBox(height: 80), // Space for bottom nav
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
