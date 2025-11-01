@@ -8,8 +8,6 @@ BeHer is a Flutter-based intelligent beauty assistant that recommends personaliz
 
 🧠 Smart Routine Designer – AI-powered daily routines built around your preferences, lifestyle, and goals.
 
-📸 Intelligent Skin Analysis – Upload photos for quick, data-driven insights and suggestions.
-
 🔔 Routine Reminders – Stay consistent with smart notifications and progress tracking.
 
 🌈 Modern Flutter UI – Clean, responsive, and elegant interface for a premium user experience.
@@ -18,9 +16,9 @@ BeHer is a Flutter-based intelligent beauty assistant that recommends personaliz
 
 Frontend: Flutter (Dart)
 
-AI/ML Models: K-Nearest Neighbors (KNN) & Neural Networks for recommendations and analysis
+AI/ML Models: K-Nearest Neighbors (KNN) for recommendations
 
-Backend: Supabase (Authentication, Storage)
+Backend: Supabase (Authentication, Profiles, Storage)
 
 APIs: Gemini api
 
